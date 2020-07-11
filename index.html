@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch!!</title>
+
+    <!--  ************ Bootstaros Link ********  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+
+    <!--******** Javascript link*******-->
+    <script src="#">
+
+    </script>
+
+ <style>
+     @font-face {
+         font-family: clock;
+         src: url(digital-7\ \(mono\).ttf);
+     }
+     body{
+         background:url(images/back007.jpg);
+         background-repeat: no-repeat;
+         background-size: cover;
+         width: 100%;
+         height: 100vh;
+
+     }
+     .main{
+        text-align: center;
+     }
+     .stop-watch{
+         margin-top: 100px;
+       
+       
+     }
+
+     .stop-watch01{
+        margin-top: 100px;
+       
+     }
+     h1{
+         display: inline-block;
+         width: 120px;
+         height:100px;
+         margin-left: 20px;
+         margin-right: 20px;
+         font-weight: 700;
+         font-family: clock;
+         font-size: 5.5rem !important;
+         color: rgb(0, 0, 0);
+         -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+	    -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+	     box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+         border-radius: 5px;
+         border: black 1px solid;
+         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #000000, 0 0 20px black, 0 0 25px rgb(170, 32, 32),
+     0 0 30px black, 0 0 35px black;
+     }
+
+
+    .bt01 button{
+    border-color: 1px solid #fff;
+    border-radius: 100px;
+    padding:12px 35px;
+    color:#fff;
+    font-size:1rem;
+    background-color: #222f3f;
+    font-weight: 500;
+    line-height: 1.4;
+    outline: none;
+    text-align:center;
+    
+
+
+}
+
+.bt01 button:hover{
+    color: #50d1c0;
+    background-color:white;
+    box-shadow:2px 5px  20px 0 rgba(157, 199, 233, 0.3);
+    text-decoration:none;
+   
+
+}
+
+.Heading h2{
+    text-align: center;
+    font-size: 4rem !important;
+    color:black!important;
+    font-weight: 900 !important;
+    margin-top: 40px !important;
+    padding: 40px 60px;
+    border: royalblue 1px ;
+    -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+	-moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+	box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+    font-family: clock !important;
+    color: black;
+    text-align: center;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #000000, 0 0 20px blueviolet, 0 0 25px rgb(170, 32, 32),
+     0 0 30px #0073e6, 0 0 35px blue;
+
+    
+}
+@media only screen and (max-width:386px){
+    h1{
+        
+        width: 50px;
+    }
+
+    .bt01 button{
+        padding: 10px 20px;
+
+        
+    }
+    
+}
+ </style>   
+</head>
+<body>
+    
+    <section class="">
+        
+            <div class="container main">
+                <div class="Heading">
+                    <h2>
+                        stop-watch
+                    </h2>
+            </div>
+                <div class="row stop-watch">
+                    
+                        <div class="col-md-12 col-xl-12 col-lg-12 ">
+                                    <h1 id="min">0</h1>
+                                    <h1 id="sec">0</h1>
+                                    <h1 id="msec">0</h1>
+                        </div>
+                </div>
+
+
+                <div class="row stop-watch01">
+                    <div class="col-md-12 col-xl-12 col-lg-12 ">
+                               
+
+                               <div class="bt01 ">
+                                <button id="myStart" class="startcolor"  onclick="start()" > Start</button>
+                                <button id="myStop"   onclick="stop()" > Stop</button>
+                                <button id="myreset"  onclick="reset()" >Reset</button>
+                                  </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+    </section>
+
+
+
+    <script>
+
+    
+    
+             var min = 0;
+            var sec = 0;
+            var msec = 0;
+        
+            var minHeading = document.getElementById("min");
+            var secHeading = document.getElementById("sec");
+            var msecHeading = document.getElementById("msec");
+            var interval;
+        
+            function timer(){
+                msec++
+                msecHeading.innerHTML = msec;
+                if(msec >= 100){
+                    sec++
+                    secHeading.innerHTML = sec;
+                    msec = 0;
+                }
+                if(sec >= 60){
+                    min++
+                    minHeading.innerHTML = min;
+                    sec = 0;
+                }
+            }  
+        
+            function start(){
+                interval = setInterval(timer ,10);
+                
+                document.getElementById("myStart").disabled = true;
+                document.getElementById("myStop").disabled = false;
+                document.getElementById("myreset").disabled = false;
+
+            }
+        
+            function stop(){
+                clearInterval(interval)
+                document.getElementById("myStart").disabled = false;
+                document.getElementById("myStop").disabled = true;
+                document.getElementById("myreset").disabled = false;
+            }
+            function reset(){
+                min = 0;
+                sec = 0;
+                msec = 0;
+                minHeading.innerHTML =  min;
+                secHeading.innerHTML =  sec;
+                msecHeading.innerHTML = msec;
+                stop();
+                document.getElementById("myStop").disabled = true;
+                document.getElementById("myStart").disabled = false;
+                document.getElementById("myreset").disabled = true;
+        
+            }
+        
+           
+        </script>
+        
+        
+
+
+     <!-- Bootstarps Javascript link-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
